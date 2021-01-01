@@ -1,5 +1,8 @@
 call plug#begin('~/.vim/plugged')
 
+" Grep
+Plug 'mileszs/ack.vim'
+
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
 
@@ -40,6 +43,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Theme
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -48,6 +52,15 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Comment
 Plug 'tpope/vim-commentary'
+
+" Multiple Cursors
+Plug 'terryma/vim-multiple-cursors'
+
+" Python
+Plug 'Vimjas/vim-python-pep8-indent'
+
+" Expand
+Plug 'terryma/vim-expand-region'
 
 " Iden
 Plug 'Yggdroot/indentLine'
