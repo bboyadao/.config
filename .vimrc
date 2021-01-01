@@ -74,6 +74,14 @@ Plug '~/my-prototype-plugin'
 Plug 'ryanoasis/vim-devicons'
 " Initialize plugin system
 call plug#end()
+set wildmenu
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+noremap <Tab> >gV
+noremap <S-Tab> <gV
+
 
 set clipboard=unnamed
 set mouse=a
@@ -112,12 +120,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " NERD Tree mappings
 map <leader>nn :NERDTreeToggle<cr>
-map <leader>nb :NERDTreeFromBookmark 
+map <leader>nb :NERDTreeFromBookmark
 map <leader>nf :NERDTreeFind<cr>
 let NERDTreeShowHidden=1
 
 
-let g:gitgutter_max_signs = -1 
+let g:gitgutter_max_signs = -1
 let g:gitgutter_sign_added = '✚'
 let g:gitgutter_sign_modified = '✹'
 let g:gitgutter_sign_removed = '-'
