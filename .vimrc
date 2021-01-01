@@ -62,6 +62,9 @@ Plug 'ryanoasis/vim-devicons'
 " Initialize plugin system
 call plug#end()
 
+set clipboard=unnamed
+set mouse=a
+vmap <D-c> "+y
 set nocompatible
 set backspace=indent,eol,start
 
@@ -128,6 +131,7 @@ let g:jedi#popup_select_first = 0
 " autocmd InsertEnter,InsertLeave * set cul!
 autocmd ColorScheme * hi pythonComment ctermfg=2 gui=italic guifg=#408010
 
+set updatetime=100
 
 " let g:multi_cursor_use_default_mapping=0
 
