@@ -98,6 +98,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark 
 map <leader>nf :NERDTreeFind<cr>
+let NERDTreeShowHidden=1
+
 
 let g:gitgutter_max_signs = -1 
 let g:gitgutter_sign_added = '✚'
