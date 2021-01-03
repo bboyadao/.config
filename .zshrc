@@ -117,7 +117,7 @@ function goto_project {
  fi
 }
 
-alias go='goto_project'
+#alias go='goto_project'
 alias dc=docker-compose
 alias d=docker
 

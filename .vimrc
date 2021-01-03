@@ -2,6 +2,8 @@ call plug#begin('~/.vim/plugged')
 
 " Grep
 Plug 'mileszs/ack.vim'
+" indentpython
+Plug 'vim-scripts/indentpython.vim'
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
@@ -21,6 +23,9 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'wagnerf42/vim-clippy'
 
 
+
+" YouCompleteMe
+Plug 'Valloric/YouCompleteMe'
 
 " Using a non-default branch
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
@@ -58,6 +63,8 @@ Plug 'terryma/vim-multiple-cursors'
 
 " Python
 Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'vim-syntastic/syntastic'
+Plug 'nvie/vim-flake8'
 
 " Expand
 Plug 'terryma/vim-expand-region'
@@ -74,10 +81,35 @@ Plug '~/my-prototype-plugin'
 Plug 'ryanoasis/vim-devicons'
 " Initialize plugin system
 call plug#end()
-set wildmenu
+
+
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+
+" python PEP8
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+
+let python_highlight_all=1
+
+
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2  |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2
+
+" Flagging Unnecessary Whitespace
+au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" like zsh select  by tab
+set wildmenu
 set expandtab
 noremap <Tab> >gV
 noremap <S-Tab> <gV
@@ -135,7 +167,7 @@ let g:airline_powerline_fonts = 1
 
 set guifont=Hack\ Nerd\ Font\ Mono:h13
 set background=dark
-syntax enable
+syntax on
 
 colorscheme gruvbox
 let g:gruvbox_italic=1
@@ -143,13 +175,17 @@ let g:gruvbox_italic=1
 let g:indentLine_enabled = 1
 let g:indentLine_char_list = ['|', '¦', '┆', '┊', ' ⎸']
 
+set completeopt-=preview
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
 let g:jedi#loader_py_version = 3
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#use_splits_not_buffers = "left"
 let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first = 0
-" autocmd InsertEnter,InsertLeave * set cul!
+autocmd InsertEnter,InsertLeave * set cul!
 autocmd ColorScheme * hi pythonComment ctermfg=2 gui=italic guifg=#408010
 
 set updatetime=100
