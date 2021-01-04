@@ -81,8 +81,12 @@ Plug '~/my-prototype-plugin'
 Plug 'ryanoasis/vim-devicons'
 " Initialize plugin system
 call plug#end()
+" set termguicolors
 
-
+set cursorline!
+set lazyredraw
+set synmaxcol=128
+syntax sync minlines=256
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -124,7 +128,11 @@ set backspace=indent,eol,start
 
 set hlsearch!
 nnoremap <F3> :set hlsearch!<CR>
-hi Normal guibg=NONE ctermbg=NONE
+" hi Normal guibg=NONE ctermbg=NONE
+" hi Normal ctermbg=NONE guibg=NONE
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
+
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
 
