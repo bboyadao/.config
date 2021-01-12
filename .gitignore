@@ -1,2 +1,2 @@
-/plugged/*
-/autoload/*
+.vim/plugged/*
+.vim/autoload/*
