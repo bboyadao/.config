@@ -19,7 +19,7 @@ Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 " Nerdtree"
 Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
+Plug 'preservim/nerdcommenter'
 Plug 'wagnerf42/vim-clippy'
 
 
@@ -166,9 +166,6 @@ map <leader>nb :NERDTreeFromBookmark
 map <leader>nf :NERDTreeFind<cr>
 let NERDTreeShowHidden=1
 
-
-let g:gitgutter_max_signs = -1
-let g:gitgutter_sign_added = '✚'
 let g:gitgutter_sign_modified = '✹'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '-'
@@ -178,8 +175,7 @@ let g:airline_powerline_fonts = 1
 set guifont=Hack\ Nerd\ Font\ Mono:h13
 set background=dark
 syntax on
-
-colorscheme gruvbox
+autocmd vimenter * ++nested colorscheme gruvbox
 let g:gruvbox_italic=1
 
 let g:indentLine_enabled = 1
@@ -196,6 +192,7 @@ let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#use_splits_not_buffers = "left"
 let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first = 0
+let g:jedi#environment_path = ""
 autocmd InsertEnter,InsertLeave * set cul!
 autocmd ColorScheme * hi pythonComment ctermfg=2 gui=italic guifg=#408010
 
@@ -277,3 +274,6 @@ func! Multiple_cursors_after()
     call deoplete#enable()
   endif
 endfunc
+
+
+nmap <D-/> gcc
