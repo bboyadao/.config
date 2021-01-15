@@ -185,6 +185,10 @@ set completeopt-=preview
 set completeopt=menu,menuone,preview,noselect,noinsert
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <C-LeftMouse> <leader>g 
+let jedi#show_call_signatures = 0
+let jedi#documentation_command = ""
+autocmd FileType python setlocal completeopt-=preview
 
 let g:jedi#loader_py_version = 3
 let g:jedi#auto_vim_configuration = 0
@@ -194,7 +198,8 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first = 0
 let g:jedi#environment_path = ""
 autocmd InsertEnter,InsertLeave * set cul!
-autocmd ColorScheme * hi pythonComment ctermfg=2 gui=italic guifg=#408010
+" autocmd ColorScheme * hi pythonComment ctermfg=2 gui=italic guifg=#408010
+
 
 set updatetime=100
 
