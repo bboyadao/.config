@@ -84,6 +84,8 @@ Plug 'ryanoasis/vim-devicons'
 " Initialize plugin system
 call plug#end()
 " set termguicolors
+set nobackup
+set noswapfile
 
 set cursorline!
 set lazyredraw
