@@ -40,8 +40,8 @@ Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 
 " Plugin outside ~/.vim/plugged with post-update hook
-" Plug 'junegunn/fzf', {'do': './install --all' }
-" Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', {'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Color Schema
 Plug 'morhetz/gruvbox'
