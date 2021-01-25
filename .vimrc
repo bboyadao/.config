@@ -22,6 +22,10 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'preservim/nerdcommenter'
 Plug 'wagnerf42/vim-clippy'
 
+" COC
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'stsewd/fzf-checkout.vim'
 
 
 " YouCompleteMe
@@ -158,8 +162,8 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
+" autocmd VimEnter * NERDTree
+" autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " NERD Tree mappings
@@ -218,7 +222,6 @@ set updatetime=100
 " let g:multi_cursor_quit_key            = '<Esc>'
 
 " Quickly find and open a file in the CWD
-let g:ctrlp_map = '<C-f>'
 
 " Quickly find and open a recently opened file
 map <leader>f :MRU<CR>
@@ -226,8 +229,7 @@ map <leader>f :MRU<CR>
 " Quickly find and open a buffer
 map <leader>b :CtrlPBuffer<cr>
 
-let g:ctrlp_map = '<C-f>'
-map <leader>j :CtrlP<cr>
+map <C-f> :Files<cr>
 map <C-b> :CtrlPBuffer<cr>
 
 " ALE
