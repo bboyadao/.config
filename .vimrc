@@ -23,8 +23,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'wagnerf42/vim-clippy'
 
 " COC
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+
 Plug 'stsewd/fzf-checkout.vim'
 
 
@@ -41,7 +40,8 @@ Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 
 " Plugin outside ~/.vim/plugged with post-update hook
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', {'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Color Schema
 Plug 'morhetz/gruvbox'
@@ -87,6 +87,7 @@ Plug '~/my-prototype-plugin'
 Plug 'ryanoasis/vim-devicons'
 " Initialize plugin system
 call plug#end()
+let g:mapleader= " "
 " set termguicolors
 set nobackup
 set noswapfile
@@ -171,6 +172,7 @@ map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark
 map <leader>nf :NERDTreeFind<cr>
 let NERDTreeShowHidden=1
+noremap <Leader>w <C-w>
 
 let g:gitgutter_sign_modified = '✹'
 let g:gitgutter_sign_removed = '-'
@@ -224,12 +226,12 @@ set updatetime=100
 " Quickly find and open a file in the CWD
 
 " Quickly find and open a recently opened file
-map <leader>f :MRU<CR>
+map <leader>p :MRU<CR>
 
 " Quickly find and open a buffer
 map <leader>b :CtrlPBuffer<cr>
 
-map <C-f> :Files<cr>
+map <C-f> :CtrlP<cr>
 map <C-b> :CtrlPBuffer<cr>
 
 " ALE
@@ -284,5 +286,13 @@ func! Multiple_cursors_after()
   endif
 endfunc
 
+map <Leader>f :Files<CR>
 
+let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+
+let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden -g "!{.pyc,.git,node_modules,vendor}/*"'
+command! -bang -nargs=? -complete=dir Files
+     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 nmap <D-/> gcc

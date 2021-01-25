@@ -125,6 +125,6 @@ alias d=docker
 
 export PATH="/usr/local/opt/node@10/bin:$PATH"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-
+export BAT_THEME="gruvbox"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
