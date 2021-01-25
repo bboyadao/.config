@@ -100,7 +100,7 @@ scrolling:
 
 # Font configuration (changes require restart)
 font:
-  size: 18
+  size: 15
   normal:
     family: Hack Nerd Font Mono
     # style: Regular

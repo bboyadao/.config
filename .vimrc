@@ -21,12 +21,7 @@ Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'preservim/nerdcommenter'
 Plug 'wagnerf42/vim-clippy'
-
-" COC
-
 Plug 'stsewd/fzf-checkout.vim'
-
-
 " YouCompleteMe
 Plug 'Valloric/YouCompleteMe'
 
@@ -66,8 +61,10 @@ Plug 'tpope/vim-commentary'
 Plug 'terryma/vim-multiple-cursors'
 
 " Python
+Plug 'relastle/vim-nayvy'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'vim-syntastic/syntastic'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'nvie/vim-flake8'
 Plug 'integralist/vim-mypy'
@@ -233,8 +230,21 @@ map <leader>b :CtrlPBuffer<cr>
 
 map <C-f> :CtrlP<cr>
 map <C-b> :CtrlPBuffer<cr>
+"COC
 
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 " ALE
+let g:ale_fixers = {
+      \ 'python': ['nayvy#ale_fixer', 'autopep8', 'isort'],
+      \ }
+set omnifunc=ale#completion#OmniFunc
 nmap <silent> <C-E> <Plug>(ale_previous_wrap)
 nmap <silent> <C-e> <Plug>(ale_next_wrap)
 
@@ -243,6 +253,7 @@ let g:ale_lint_on_save = 1
 let g:ale_sign_error = '●'
 let g:ale_sign_warning = '.'
 let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
@@ -254,6 +265,37 @@ function! LinterStatus() abort
         \   all_errors
         \)
 endfunction
+
+  let g:ale_completion_symbols = {
+  \ 'text': '',
+  \ 'method': '',
+  \ 'function': '',
+  \ 'constructor': '',
+  \ 'field': '',
+  \ 'variable': '',
+  \ 'class': '',
+  \ 'interface': '',
+  \ 'module': '',
+  \ 'property': '',
+  \ 'unit': 'unit',
+  \ 'value': 'val',
+  \ 'enum': '',
+  \ 'keyword': 'keyword',
+  \ 'snippet': '',
+  \ 'color': 'color',
+  \ 'file': '',
+  \ 'reference': 'ref',
+  \ 'folder': '',
+  \ 'enum member': '',
+  \ 'constant': '',
+  \ 'struct': '',
+  \ 'event': 'event',
+  \ 'operator': '',
+  \ 'type_parameter': 'type param',
+  \ '<default>': 'v'
+  \ }
+
+
 set statusline+=%=
 set statusline+=\ %{LinterStatus()}
 
