@@ -191,17 +191,17 @@ set completeopt=menu,menuone,preview,noselect,noinsert
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <C-LeftMouse> <leader>g 
-let jedi#show_call_signatures = 0
-let jedi#documentation_command = ""
 autocmd FileType python setlocal completeopt-=preview
 
-let g:jedi#loader_py_version = 3
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#use_tabs_not_buffers = 1
-let g:jedi#use_splits_not_buffers = "left"
-let g:jedi#popup_on_dot = 0
-let g:jedi#popup_select_first = 0
-let g:jedi#environment_path = ""
+" let jedi#show_call_signatures = 0
+" let jedi#documentation_command = ""
+" let g:jedi#loader_py_version = 3
+" let g:jedi#auto_vim_configuration = 0
+" let g:jedi#use_tabs_not_buffers = 1
+" let g:jedi#use_splits_not_buffers = "left"
+" let g:jedi#popup_on_dot = 0
+" let g:jedi#popup_select_first = 0
+" let g:jedi#environment_path = ""
 autocmd InsertEnter,InsertLeave * set cul!
 " autocmd ColorScheme * hi pythonComment ctermfg=2 gui=italic guifg=#408010
 
@@ -241,19 +241,43 @@ else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 " ALE
+let g:ale_linters = {'python': ['mypy', 'flake8', 'pylint']}
+" let g:ale_fixers = {'python': ['autopep8', 'black', 'isort']}
+
 let g:ale_fixers = {
-      \ 'python': ['nayvy#ale_fixer', 'autopep8', 'isort'],
+      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \ 'javascript': ['eslint'],
+      \ 'python': ['nayvy#ale_fixer', 'black','isort']
       \ }
+
 set omnifunc=ale#completion#OmniFunc
 nmap <silent> <C-E> <Plug>(ale_previous_wrap)
 nmap <silent> <C-e> <Plug>(ale_next_wrap)
 
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_save = 1
+let g:ale_lint_on_enter = 1
 let g:ale_sign_error = '●'
 let g:ale_sign_warning = '.'
 let g:ale_completion_enabled = 1
 let g:ale_completion_autoimport = 1
+
+function ALELSPMappings()
+    let lsp_found=0
+    for linter in ale#linter#Get(&filetype)
+        if !empty(linter.lsp) && ale#lsp_linter#CheckWithLSP(bufnr(''), linter)
+            let lsp_found=1
+        endif
+    endfor
+    if (lsp_found)
+        nnoremap <buffer> K :ALEDocumentation<cr>
+        nnoremap <buffer> gr :ALEFindReferences<cr>
+        nnoremap <buffer> gd :ALEGoToDefinition<cr>
+        nnoremap <buffer> gy :ALEGoToTypeDefinition<cr>
+        nnoremap <buffer> gh :ALEHover<cr>
+
+        setlocal omnifunc=ale#completion#OmniFunc
+    endif
+endfunction
+autocmd BufRead,FileType * call ALELSPMappings()
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
