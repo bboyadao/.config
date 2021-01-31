@@ -1,0 +1,44 @@
+{
+  "coc.preferences.rootPatterns": [".vim", ".git", ".hg", ".projections.json"],
+  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.refreshAfterSave": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "python",
+    "json",
+    "css",
+    "scss",
+    "less",
+    "Markdown",
+    "javascript",
+    "javascript.vue",
+    "javascript.jsx"
+  ],
+  "suggest.timeout": 20000,
+  "python.linting.pylintEnabled": false,
+  "python.linting.mypyEnabled": true,
+  "python.linting.enabled": true,
+  "python.formatting.provider": "black",
+  "python.envFile": "${workspaceFolder}/.env",
+  "python.jediEnabled": false,
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "/Library/Frameworks/Python.framework/Versions/3.6/bin/black",
+  "python.formatting.blackArgs": ["--fast"],
+  "html.format.enable": true,
+  "html.format.preserveNewLines": true,
+  "html.format.maxPreserveNewLines": 2,
+  "html.format.indentInnerHtml": false,
+  "html.format.wrapAttributes": "force",
+  "html.format.wrapAttributesIndentSize": 4,
+  "html.suggest.html5": true,
+  "xml.format.splitAttributes": true,
+  // float config
+  "suggest.floatEnable": true,
+  "diagnostic.messageTarget": "float",
+  "signature.target": "float",
+  "coc.preferences.hoverTarget": "float"
+  // floating window disable
+  //"suggest.floatEnable": false,
+  //"diagnostic.messageTarget": "echo",
+  //"signature.target": "echo",
+  //"coc.preferences.hoverTarget": "echo"
+}

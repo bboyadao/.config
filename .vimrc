@@ -22,17 +22,6 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'preservim/nerdcommenter'
 Plug 'wagnerf42/vim-clippy'
 Plug 'stsewd/fzf-checkout.vim'
-" YouCompleteMe
-Plug 'Valloric/YouCompleteMe'
-
-" Using a non-default branch
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-Plug 'fatih/vim-go', { 'tag': '*' }
-
-" Plugin options
-Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', {'do': './install --all' }
@@ -40,9 +29,6 @@ Plug 'junegunn/fzf.vim'
 
 " Color Schema
 Plug 'morhetz/gruvbox'
-
-" Search File
-Plug 'ctrlpvim/ctrlp.vim'
 
 " Theme
 Plug 'vim-airline/vim-airline'
@@ -56,6 +42,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Comment
 Plug 'tpope/vim-commentary'
+
+" Surround
+Plug 'tpope/vim-surround'
 
 " Multiple Cursors
 Plug 'terryma/vim-multiple-cursors'
@@ -188,9 +177,11 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊', ' ⎸']
 
 set completeopt-=preview
 set completeopt=menu,menuone,preview,noselect,noinsert
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-map <C-LeftMouse> <leader>g 
+
+" let g:ycm_autoclose_preview_window_after_completion=1
+" map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+map <C-LeftMouse> <leader>g
 autocmd FileType python setlocal completeopt-=preview
 
 " let jedi#show_call_signatures = 0
