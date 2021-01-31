@@ -110,14 +110,6 @@ pastefinish() {
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
-function goto_project {
-
- if [ "$1x" != 'x' ]; then
-    cd ~/Projects/"$1"
- fi
-}
-
-#alias go='goto_project'
 alias dc=docker-compose
 alias d=docker
 
@@ -126,5 +118,7 @@ alias d=docker
 # export PATH="/usr/local/opt/node@10/bin:$PATH"
 export PATH="/usr/local/opt/node@15/bin:$PATH"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+export VEF="~/Projects/vEnV$VEF"
+
 export BAT_THEME="gruvbox"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

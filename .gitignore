@@ -1,2 +1,3 @@
 .vim/plugged/*
 /coc/*
+.DS_Store
