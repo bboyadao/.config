@@ -1,5 +1,5 @@
 " Check Python files with flake8, pylint, mypy.
-let g:ale_linters = ['flake8', 'mypy', 'pylint', 'pylint_django']
+let b:ale_linters = ['flake8', 'pylint', 'pylint_django', 'mypy']
 
 " Fix Python files with autopep8, yapf, black.
 let g:ale_fixers = {
