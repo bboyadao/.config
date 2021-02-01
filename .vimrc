@@ -178,7 +178,6 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊', ' ⎸']
 set completeopt-=preview
 set completeopt=menu,menuone,preview,noselect,noinsert
 
-map <C-LeftMouse> <leader>g
 autocmd FileType python setlocal completeopt-=preview
 autocmd InsertEnter,InsertLeave * set cul!
 " autocmd ColorScheme * hi pythonComment ctermfg=2 gui=italic guifg=#408010
@@ -232,6 +231,12 @@ let g:ale_sign_warning = '.'
 let g:ale_completion_enabled = 1
 let g:ale_completion_autoimport = 1
 
+" gd GD GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 function ALELSPMappings()
     let lsp_found=0
     for linter in ale#linter#Get(&filetype)
@@ -250,6 +255,8 @@ function ALELSPMappings()
     endif
 endfunction
 autocmd BufRead,FileType * call ALELSPMappings()
+map <C-LeftMouse> <leader>g
+
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))

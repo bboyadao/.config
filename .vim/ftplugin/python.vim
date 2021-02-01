@@ -1,13 +1,15 @@
 " Check Python files with flake8, pylint, mypy.
-let b:ale_linters = ['flake8', 'pylint', 'pylint_django', 'mypy']
+let b:ale_linters = {'python': ['flake8', 'pylint', 'pylint_django', 'mypy']}
 
 " Fix Python files with autopep8, yapf, black.
-let g:ale_fixers = {
+let b:ale_fixers = {
       \ 'python': ['nayvy#ale_fixer', 'autopep8', 'isort', 'yapf', 'black'],
       \ }
 
 " Disable warnings about trailing whitespace for Python files.
 let b:ale_warn_about_trailing_whitespace = 0
+
+let g:ale_python_pylint_options = '--load-plugins pylint_django --django-settings-module=stratioAI.local'
 
 " Auto import
 let g:ale_completion_autoimport = 1
