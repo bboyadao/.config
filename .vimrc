@@ -331,13 +331,12 @@ func! Multiple_cursors_after()
   endif
 endfunc
 
-map <Leader>f :Files<CR>
+map <Leader>p :Files<CR>
 map <Leader>F :Rg<CR>
 
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
-
 let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden -g "!{.pyc,.git,node_modules,vendor}/*"'
 command! -bang -nargs=? -complete=dir Files
      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
