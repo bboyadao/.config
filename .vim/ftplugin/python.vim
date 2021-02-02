@@ -3,7 +3,7 @@ let b:ale_linters = {'python': ['flake8', 'pylint', 'pylint_django', 'mypy']}
 
 " Fix Python files with autopep8, yapf, black.
 let b:ale_fixers = {
-      \ 'python': ['nayvy#ale_fixer', 'autopep8', 'isort', 'yapf', 'black'],
+      \ 'python': ['black', 'nayvy#ale_fixer', 'autopep8', 'isort', 'yapf', 'autopep8']
       \ }
 
 " Disable warnings about trailing whitespace for Python files.

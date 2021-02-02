@@ -122,3 +122,4 @@ export VEF="~/Projects/vEnV$VEF"
 
 export BAT_THEME="gruvbox"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme

@@ -332,6 +332,7 @@ func! Multiple_cursors_after()
 endfunc
 
 map <Leader>f :Files<CR>
+map <Leader>F :Rg<CR>
 
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
