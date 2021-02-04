@@ -50,6 +50,7 @@ Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
 
 " Python
+Plug 'psf/black', { 'branch': 'stable' }
 Plug 'relastle/vim-nayvy'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'vim-syntastic/syntastic'
