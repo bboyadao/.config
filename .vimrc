@@ -59,6 +59,10 @@ Plug 'dense-analysis/ale'
 Plug 'nvie/vim-flake8'
 Plug 'integralist/vim-mypy'
 
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'ryanolsonx/vim-lsp-python'
+
 " Expand
 Plug 'terryma/vim-expand-region'
 
@@ -192,21 +196,17 @@ set updatetime=100
 " let g:multi_cursor_select_all_word_key = '<A-n>'
 " let g:multi_cursor_start_key           = 'g<C-n>'
 " let g:multi_cursor_select_all_key      = 'g<A-n>'
-" let g:multi_cursor_next_key            = '<C-n>'
-" let g:multi_cursor_prev_key            = '<C-p>'
-" let g:multi_cursor_skip_key            = '<C-x>'
-" let g:multi_cursor_quit_key            = '<Esc>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
 
 " Quickly find and open a file in the CWD
 
 " Quickly find and open a recently opened file
-map <leader>p :MRU<CR>
 
 " Quickly find and open a buffer
-map <leader>b :CtrlPBuffer<cr>
 
-map <C-f> :CtrlP<cr>
-map <C-b> :CtrlPBuffer<cr>
 "COC
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
@@ -231,6 +231,10 @@ let g:ale_sign_error = '●'
 let g:ale_sign_warning = '.'
 let g:ale_completion_enabled = 1
 let g:ale_completion_autoimport = 1
+" let g:ale_list_vertical = 1
+" let g:ale_keep_list_window_open = 0
+" let g:ale_open_list = 0
+" let g:ale_list_window_size = 20
 
 " gd GD GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -257,6 +261,14 @@ function ALELSPMappings()
 endfunction
 autocmd BufRead,FileType * call ALELSPMappings()
 map <C-LeftMouse> <leader>g
+
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
 
 
 function! LinterStatus() abort
@@ -343,3 +355,7 @@ command! -bang -nargs=? -complete=dir Files
      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 nmap <D-/> gcc
+
+" set foldmethod=indent
+" nnoremap <space> za
+" vnoremap <space> zf
