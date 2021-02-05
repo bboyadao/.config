@@ -26,6 +26,8 @@ Plug 'stsewd/fzf-checkout.vim'
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', {'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'antoinemadec/coc-fzf'
 
 " Color Schema
 Plug 'morhetz/gruvbox'
@@ -78,7 +80,7 @@ Plug '~/my-prototype-plugin'
 Plug 'ryanoasis/vim-devicons'
 " Initialize plugin system
 call plug#end()
-let g:mapleader= " "
+let g:mapleader=" "
 " set termguicolors
 set nobackup
 set noswapfile
@@ -226,15 +228,16 @@ set omnifunc=ale#completion#OmniFunc
 nmap <silent> <C-E> <Plug>(ale_previous_wrap)
 nmap <silent> <C-e> <Plug>(ale_next_wrap)
 
-let g:ale_lint_on_enter = 1
+let g:ale_lint_on_enter = 0
 let g:ale_sign_error = '●'
 let g:ale_sign_warning = '.'
 let g:ale_completion_enabled = 1
 let g:ale_completion_autoimport = 1
+let g:ale_float_preview = 0
 " let g:ale_list_vertical = 1
-" let g:ale_keep_list_window_open = 0
-" let g:ale_open_list = 0
-" let g:ale_list_window_size = 20
+let g:ale_keep_list_window_open = 0
+let g:ale_open_list = 0
+let g:ale_list_window_size = 10
 
 " gd GD GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -251,8 +254,8 @@ function ALELSPMappings()
     endfor
     if (lsp_found)
         nnoremap <buffer> K :ALEDocumentation<cr>
-        nnoremap <buffer> gr :ALEFindReferences<cr>
-        nnoremap <buffer> gd :ALEGoToDefinition<cr>
+        nnoremap <buffer> gr :ALEFindReferences -vsplit<cr>
+        nnoremap <buffer> gd :ALEGoToDefinition -tab<cr>
         nnoremap <buffer> gy :ALEGoToTypeDefinition<cr>
         nnoremap <buffer> gh :ALEHover<cr>
 
@@ -260,6 +263,8 @@ function ALELSPMappings()
     endif
 endfunction
 autocmd BufRead,FileType * call ALELSPMappings()
+
+
 map <C-LeftMouse> <leader>g
 
 if executable('pyls')
@@ -359,3 +364,9 @@ nmap <D-/> gcc
 " set foldmethod=indent
 " nnoremap <space> za
 " vnoremap <space> zf
+
+
+map <D-a>:ls <CR>
+
+" map <Leader>^N :ALELint<CR>
+map <M-s> :wq<kEnter>
