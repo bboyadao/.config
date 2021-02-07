@@ -616,10 +616,7 @@ key_bindings:
   - { key: F10,      mods: Super,   chars: "\x1b[21;3~"                      }
   - { key: F11,      mods: Super,   chars: "\x1b[23;3~"                      }
   - { key: F12,      mods: Super,   chars: "\x1b[24;3~"                      }
-  - { key: F100,      mods: Super,   chars: "\x1b[100;3~"                      }
-
-
-
+  # - { key: F100,      mods: Super,   chars: "\x1b[100;3~"                      }
   - { key: NumpadEnter,             chars: "\n"                              }
   - { key: Comma,    mods: Super,    chars: "\x1bCommand"                           }
   - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" }
