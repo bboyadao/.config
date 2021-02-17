@@ -351,6 +351,7 @@ endfunc
 
 map <Leader>p :Files<CR>
 map <Leader>F :Rg<CR>
+map <Leader>b :Buffers<CR>
 
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
