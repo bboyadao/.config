@@ -60,7 +60,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'nvie/vim-flake8'
 Plug 'integralist/vim-mypy'
-
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'ryanolsonx/vim-lsp-python'
@@ -98,7 +97,7 @@ au BufNewFile,BufRead *.py
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
-    \ set textwidth=79 |
+    \ set textwidth=80 |
     \ set expandtab |
     \ set autoindent |
     \ set fileformat=unix
@@ -220,31 +219,12 @@ else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
-" ALE
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_save = 1
-
-set omnifunc=ale#completion#OmniFunc
-nmap <silent> <C-E> <Plug>(ale_previous_wrap)
-nmap <silent> <C-e> <Plug>(ale_next_wrap)
-
-let g:ale_lint_on_enter = 0
-let g:ale_sign_error = '●'
-let g:ale_sign_warning = '.'
-let g:ale_completion_enabled = 1
-let g:ale_completion_autoimport = 1
-let g:ale_float_preview = 0
-" let g:ale_list_vertical = 1
-let g:ale_keep_list_window_open = 0
-let g:ale_open_list = 0
-let g:ale_list_window_size = 10
-
-" gd GD GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" ALE
 function ALELSPMappings()
     let lsp_found=0
     for linter in ale#linter#Get(&filetype)
@@ -254,7 +234,7 @@ function ALELSPMappings()
     endfor
     if (lsp_found)
         nnoremap <buffer> K :ALEDocumentation<cr>
-        nnoremap <buffer> gr :ALEFindReferences -vsplit<cr>
+        nnoremap <buffer> gr :ALEFindReferences -split<cr>
         nnoremap <buffer> gd :ALEGoToDefinition -tab<cr>
         nnoremap <buffer> gy :ALEGoToTypeDefinition<cr>
         nnoremap <buffer> gh :ALEHover<cr>
@@ -262,7 +242,29 @@ function ALELSPMappings()
         setlocal omnifunc=ale#completion#OmniFunc
     endif
 endfunction
-autocmd BufRead,FileType * call ALELSPMappings()
+
+augroup ALELSPMappings
+  autocmd BufRead,FileType * call ALELSPMappings()
+augroup END
+
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_enter = 0
+let g:ale_sign_error = '●'
+let g:ale_sign_warning = '.'
+let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
+let g:ale_float_preview = 0
+let g:ale_list_vertical = 1
+let g:ale_keep_list_window_open = 0
+let g:ale_open_list = 1
+let g:ale_list_window_size = 20
+let g:ale_popup_menu_enabled = 1
+let g:ale_set_highlights = 0
+let g:ale_set_loclist = 1
+highlight ALEWarning ctermbg=DarkMagenta
+nmap <silent> <C-E> <Plug>(ale_previous_wrap)
+nmap <silent> <C-e> <Plug>(ale_next_wrap)
 
 
 map <C-LeftMouse> <leader>g
@@ -368,6 +370,3 @@ nmap <D-/> gcc
 
 
 map <D-a>:ls <CR>
-
-" map <Leader>^N :ALELint<CR>
-map <M-s> :wq<kEnter>

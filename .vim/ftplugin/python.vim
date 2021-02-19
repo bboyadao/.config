@@ -17,8 +17,6 @@ let g:ale_python_black_executable = 'black'
 let g:ale_python_flake8_executable = 'flake8'
 let g:ale_python_autopep8_executable = 'autopep8'
 let g:ale_python_mypy_executable = 'mypy'
-
-let g:ale_completion_autoimport = 1
 let g:ale_python_black_use_global = 1
 let g:ale_python_flake8_use_global = 1
 let g:ale_python_autopep8_use_global = 1
