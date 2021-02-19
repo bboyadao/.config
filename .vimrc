@@ -57,6 +57,7 @@ Plug 'relastle/vim-nayvy'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'vim-syntastic/syntastic'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'dense-analysis/ale'
 Plug 'nvie/vim-flake8'
 Plug 'integralist/vim-mypy'
@@ -129,8 +130,7 @@ set backspace=indent,eol,start
 
 set hlsearch!
 nnoremap <F3> :set hlsearch!<CR>
-" hi Normal guibg=NONE ctermbg=NONE
-" hi Normal ctermbg=NONE guibg=NONE
+
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 
@@ -186,7 +186,7 @@ set completeopt=menu,menuone,preview,noselect,noinsert
 
 autocmd FileType python setlocal completeopt-=preview
 autocmd InsertEnter,InsertLeave * set cul!
-" autocmd ColorScheme * hi pythonComment ctermfg=2 gui=italic guifg=#408010
+autocmd ColorScheme * hi pythonComment ctermfg=2 gui=italic guifg=#408010
 
 set updatetime=100
 
@@ -225,7 +225,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " ALE
-function ALELSPMappings()
+function! ALELSPMappings()
     let lsp_found=0
     for linter in ale#linter#Get(&filetype)
         if !empty(linter.lsp) && ale#lsp_linter#CheckWithLSP(bufnr(''), linter)
@@ -234,10 +234,10 @@ function ALELSPMappings()
     endfor
     if (lsp_found)
         nnoremap <buffer> K :ALEDocumentation<cr>
-        nnoremap <buffer> gr :ALEFindReferences -split<cr>
-        nnoremap <buffer> gd :ALEGoToDefinition -tab<cr>
-        nnoremap <buffer> gy :ALEGoToTypeDefinition<cr>
-        nnoremap <buffer> gh :ALEHover<cr>
+        nnoremap <buffer> R :ALEFindReferences -split<cr>
+        nnoremap <buffer> D :ALEGoToDefinition -tab<cr>
+        nnoremap <buffer> Y :ALEGoToTypeDefinition<cr>
+        nnoremap <buffer> H :ALEHover<cr>
 
         setlocal omnifunc=ale#completion#OmniFunc
     endif
@@ -266,18 +266,6 @@ highlight ALEWarning ctermbg=DarkMagenta
 nmap <silent> <C-E> <Plug>(ale_previous_wrap)
 nmap <silent> <C-e> <Plug>(ale_next_wrap)
 
-
-map <C-LeftMouse> <leader>g
-
-if executable('pyls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
-endif
-
-
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
     let l:all_errors = l:counts.error + l:counts.style_error
@@ -289,7 +277,7 @@ function! LinterStatus() abort
         \)
 endfunction
 
-  let g:ale_completion_symbols = {
+let g:ale_completion_symbols = {
   \ 'text': '',
   \ 'method': '',
   \ 'function': '',
@@ -319,6 +307,15 @@ endfunction
   \ }
 
 
+map <C-LeftMouse> <leader>g
+
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
 set statusline+=%=
 set statusline+=\ %{LinterStatus()}
 
