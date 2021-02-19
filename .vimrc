@@ -219,11 +219,6 @@ else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
 " ALE
 function! ALELSPMappings()
     let lsp_found=0
@@ -233,11 +228,11 @@ function! ALELSPMappings()
         endif
     endfor
     if (lsp_found)
-        nnoremap <buffer> K :ALEDocumentation<cr>
-        nnoremap <buffer> R :ALEFindReferences -split<cr>
-        nnoremap <buffer> D :ALEGoToDefinition -tab<cr>
-        nnoremap <buffer> Y :ALEGoToTypeDefinition<cr>
-        nnoremap <buffer> H :ALEHover<cr>
+        " nnoremap <buffer> K :ALEDocumentation<cr>
+        " nnoremap <buffer>  <leader>r :ALEFindReferences -split<cr>
+        " nnoremap <buffer> D :ALEGoToDefinition -tab<cr>
+        " nnoremap <buffer> Y :ALEGoToTypeDefinition<cr>
+        " nnoremap <buffer> H :ALEHover<cr>
 
         setlocal omnifunc=ale#completion#OmniFunc
     endif
@@ -367,3 +362,10 @@ nmap <D-/> gcc
 
 
 map <D-a>:ls <CR>
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+
