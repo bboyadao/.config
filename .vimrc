@@ -252,11 +252,11 @@ let g:ale_completion_autoimport = 1
 let g:ale_float_preview = 0
 let g:ale_list_vertical = 1
 let g:ale_keep_list_window_open = 0
-let g:ale_open_list = 1
+let g:ale_open_list = 0
 let g:ale_list_window_size = 20
 let g:ale_popup_menu_enabled = 1
 let g:ale_set_highlights = 0
-let g:ale_set_loclist = 1
+let g:ale_set_loclist = 0
 highlight ALEWarning ctermbg=DarkMagenta
 nmap <silent> <C-E> <Plug>(ale_previous_wrap)
 nmap <silent> <C-e> <Plug>(ale_next_wrap)
