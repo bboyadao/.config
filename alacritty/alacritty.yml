@@ -496,12 +496,12 @@ key_bindings:
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
   # (macOS only)
-  #- { key: Key0,   mods: Command,         action: ResetFontSize    }
-  #- { key: Equals, mods: Command,         action: IncreaseFontSize }
-  #- { key: Add,    mods: Command,         action: IncreaseFontSize }
-  #- { key: Minus,  mods: Command,         action: DecreaseFontSize }
+  - { key: Key0,   mods: Command,         action: ResetFontSize    }
+  - { key: Equals, mods: Command,         action: IncreaseFontSize }
+  - { key: Add,    mods: Command,         action: IncreaseFontSize }
+  - { key: Minus,  mods: Command,         action: DecreaseFontSize }
   - { key: K,      mods: Command,         action: ClearHistory     }
-  #- { key: K,      mods: Command,         chars: "\x0c"            }
+  - { key: K,      mods: Command,         chars: "\x0c"            }
   #- { key: V,      mods: Command,         action: Paste            }
   #- { key: C,      mods: Command,         action: Copy             }
   #- { key: H,      mods: Command,         action: Hide             }
@@ -616,8 +616,8 @@ key_bindings:
   - { key: F10,      mods: Super,   chars: "\x1b[21;3~"                      }
   - { key: F11,      mods: Super,   chars: "\x1b[23;3~"                      }
   - { key: F12,      mods: Super,   chars: "\x1b[24;3~"                      }
-  # - { key: F100,      mods: Super,   chars: "\x1b[100;3~"                      }
+  - { key: Comma, mods: Command, chars: "\x06\x76", mode: ~AppCursor } 
+  - { key: Comma, mods: Command, chars: "\x06\x76", mode: AppCursor } 
   - { key: NumpadEnter,             chars: "\n"                              }
-  - { key: Comma,    mods: Super,    chars: "\x1bCommand"                           }
   - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" }
   - { key: Return,   mods: Control, chars: "\x1b[13;5u" }

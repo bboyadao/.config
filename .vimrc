@@ -80,7 +80,7 @@ Plug '~/my-prototype-plugin'
 Plug 'ryanoasis/vim-devicons'
 " Initialize plugin system
 call plug#end()
-let g:mapleader=" "
+let g:mapleader=","
 " set termguicolors
 set nobackup
 set noswapfile
@@ -343,9 +343,9 @@ func! Multiple_cursors_after()
   endif
 endfunc
 
-map <Leader>p :Files<CR>
-map <Leader>F :Rg<CR>
-map <Leader>b :Buffers<CR>
+map <space>p :Files<CR>
+map <space>F :Rg<CR>
+map <space>b :Buffers<CR>
 
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
@@ -359,9 +359,6 @@ nmap <D-/> gcc
 " set foldmethod=indent
 " nnoremap <space> za
 " vnoremap <space> zf
-
-
-map <D-a>:ls <CR>
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
