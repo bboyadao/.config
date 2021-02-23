@@ -489,6 +489,7 @@ map <space>p :Files<CR>
 map <space>F :Rg<CR>
 map <space>b :Buffers<CR>
 
+let g:coc_fzf_preview= 'right:50%'
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
