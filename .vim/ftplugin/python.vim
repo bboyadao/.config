@@ -1,9 +1,9 @@
 " Check Python files with flake8, pylint, mypy.
-let b:ale_linters = {'python': ['flake8', 'pylint', 'pylint_django']}
+let b:ale_linters = {'python': ['flake8', 'pylint', 'pyright',  'pylint_django', 'mypy']}
 
 " Fix Python files with autopep8, yapf, black.
 let b:ale_fixers = {
-      \ 'python': [ 'isort', 'yapf', 'autopep8', 'black', 'nayvy#ale_fixer' ]
+      \ 'python': [ 'isort', 'yapf', 'autopep8', 'black']
       \ }
 
 " Disable warnings about trailing whitespace for Python files.
