@@ -71,29 +71,31 @@ ENABLE_CORRECTION="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+    kubectl
+    django
     git
     zsh-syntax-highlighting
     zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
+source <(kubectl completion zsh)
 
 # User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -121,8 +123,6 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 alias dc=docker-compose
 alias d=docker
 
-
-
 # export PATH="/usr/local/opt/node@10/bin:$PATH"
 export PATH="/usr/local/opt/node@15/bin:$PATH"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
@@ -136,3 +136,6 @@ source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+alias k=kubectl
+complete -F __start_kubectl k
+source $ZSH/plugins/kubectl/kubectl.plugin.zsh
