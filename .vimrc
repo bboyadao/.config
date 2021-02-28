@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'mileszs/ack.vim'
 
 " Color hex
-Plug 'gko/vim-coloresque'
+Plug 'ap/vim-css-color'
 " indentpython
 Plug 'vim-scripts/indentpython.vim'
 
