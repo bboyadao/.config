@@ -74,7 +74,7 @@ URxvt.keysym.Shift-Control-Down:  \033[1;6B
 URxvt.intensityStyles:	false
 URxvt.background:       [80]#000000
 URxvt.depth:		32
-URxvt.font: 		xft:Hack Nerd Font Mono:size=12, xft:Inconsolata for Powerline
+URxvt.font: 		xft:Hack Nerd Font Mono:size=12:style=Bold, xft:Inconsolata for Powerline
 URxvt.scrollBar:	false
 URxvt.cursorColor:	white
 
@@ -88,11 +88,18 @@ URxvt.keysym.M-u:	perl:url-select:select_next
 !! keyboard-select:
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 !! resize-font
-URxvt.resize-font.smaller:	C-Down
-URxvt.resize-font.bigger:	C-Up
+/* URxvt.resize-font.smaller:	C-Down */
+/* URxvt.resize-font.bigger:	C-Up */
+URxvt.keysym.C-minus:     resize-font:smaller
+URxvt.keysym.C-equal:      resize-font:bigger
+URxvt.keysym.Mod4-0:     resize-font:reset
+URxvt.keysym.C-question:  resize-font:show
 !! Matcher
 URxvt.url-launcher:	linkhandler
 URxvt.matcher.button:	1
+
+URxvt.termName: rxvt-unicode-256color
+
 
 rofi.color-enabled:	true
 rofi.color-window:	#000, #000, #000

@@ -2,6 +2,9 @@ call plug#begin('~/.vim/plugged')
 
 " Grep
 Plug 'mileszs/ack.vim'
+
+" Color hex
+Plug 'gko/vim-coloresque'
 " indentpython
 Plug 'vim-scripts/indentpython.vim'
 
