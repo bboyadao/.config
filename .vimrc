@@ -3,6 +3,9 @@ call plug#begin('~/.vim/plugged')
 " Grep
 Plug 'mileszs/ack.vim'
 
+Plug 'ryanoasis/vim-devicons'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/glyph-palette.vim'
 " Color hex
 Plug 'ap/vim-css-color'
 " indentpython
@@ -84,7 +87,6 @@ Plug 'preservim/tagbar'
 " Unmanaged plugin (manually installed and updated)
 Plug '~/my-prototype-plugin'
 
-Plug 'ryanoasis/vim-devicons'
 " Initialize plugin system
 call plug#end()
 let g:mapleader=","
@@ -520,4 +522,11 @@ command! -bang -nargs=? -complete=dir Files
 " nnoremap <space> za
 " vnoremap <space> zf
 
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
+  autocmd FileType nerdtree,startify call glyph_palette#apply()
+augroup END
+let g:fern#renderer = "nerdfont"
 
+nnoremap <space>e :CocCommand explorer<CR>
