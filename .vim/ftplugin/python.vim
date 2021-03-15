@@ -9,7 +9,9 @@ let b:ale_fixers = {
 " Disable warnings about trailing whitespace for Python files.
 let b:ale_warn_about_trailing_whitespace = 0
 
-let g:ale_python_pylint_options = '--load-plugins pylint_django --django-settings-module=stratioAI.local'
+" let g:ale_python_pylint_options = '--load-plugins pylint_django --django-settings-module=stratioAI.local'
+
+" let g:ale_python_pylint_options = '--load-plugins pylint_django'
 
 " Auto Python Format
 let g:ale_python_autoimport_executable = 'autoimport'

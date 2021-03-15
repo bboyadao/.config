@@ -20,8 +20,8 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " On-demand loading
 " Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 " Nerdtree"
-Plug 'preservim/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'preservim/nerdtree'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'preservim/nerdcommenter'
 Plug 'wagnerf42/vim-clippy'
 Plug 'stsewd/fzf-checkout.vim'
@@ -32,6 +32,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'antoinemadec/coc-fzf'
 
+Plug 'lambdalisue/fern.vim'
+Plug 'LumaKernel/fern-mapping-fzf.vim'
+Plug 'lambdalisue/fern-git-status.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 " Color Schema
 Plug 'morhetz/gruvbox'
 
@@ -43,7 +47,7 @@ Plug 'itchyny/lightline.vim'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Comment
 Plug 'tpope/vim-commentary'
@@ -144,6 +148,15 @@ set encoding=utf-8
 set number
 set relativenumber
 
+function! s:init_fern() abort
+  " Use 'select' instead of 'edit' for default 'open' action
+  nmap <buffer> <Plug>(fern-action-open) <Plug>(fern-action-open:select)
+endfunction
+
+augroup fern-custom
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
+augroup END
 
 let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
