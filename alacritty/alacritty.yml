@@ -61,7 +61,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: 
+  startup_mode:
     Windowed
     # SimpleFullscreen
   # Window title
@@ -498,7 +498,6 @@ key_bindings:
   # (macOS only)
   - { key: Key0,   mods: Command,         action: ResetFontSize    }
   - { key: Equals, mods: Command,         action: IncreaseFontSize }
-  - { key: Add,    mods: Command,         action: IncreaseFontSize }
   - { key: Minus,  mods: Command,         action: DecreaseFontSize }
   - { key: K,      mods: Command,         action: ClearHistory     }
   - { key: K,      mods: Command,         chars: "\x0c"            }
@@ -616,8 +615,8 @@ key_bindings:
   - { key: F10,      mods: Super,   chars: "\x1b[21;3~"                      }
   - { key: F11,      mods: Super,   chars: "\x1b[23;3~"                      }
   - { key: F12,      mods: Super,   chars: "\x1b[24;3~"                      }
-  - { key: Comma, mods: Command, chars: "\x06\x76", mode: ~AppCursor } 
-  - { key: Comma, mods: Command, chars: "\x06\x76", mode: AppCursor } 
+  - { key: Comma, mods: Command, chars: "\x46\x31\x32", mode: ~AppCursor }
+  - { key: Comma, mods: Command, chars: "\x46\x31\x32", mode: AppCursor }
   - { key: NumpadEnter,             chars: "\n"                              }
   - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" }
   - { key: Return,   mods: Control, chars: "\x1b[13;5u" }

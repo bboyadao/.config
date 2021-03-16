@@ -178,11 +178,11 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " NERD Tree mappings
-map <leader>nn :NERDTreeToggle<cr>
-map <leader>nb :NERDTreeFromBookmark
-map <leader>nf :NERDTreeFind<cr>
-let NERDTreeShowHidden=1
-noremap <Leader>w <C-w>
+" map <leader>nn :NERDTreeToggle<cr>
+" map <leader>nb :NERDTreeFromBookmark
+" map <leader>nf :NERDTreeFind<cr>
+" let NERDTreeShowHidden=1
+noremap <space>w <C-w>
 
 let g:gitgutter_sign_modified = '✹'
 let g:gitgutter_sign_removed = '-'
@@ -505,9 +505,13 @@ func! Multiple_cursors_after()
   endif
 endfunc
 
-map <space>p :Files<CR>
+map <F12> :Files<CR>
+" nnoremap <F100> :Files<cr>
+" map <space>f :Files<CR>
 map <space>F :Rg<CR>
 map <space>b :Buffers<CR>
+map <space>t :terminal<CR>
+
 
 let g:coc_fzf_preview= 'right:50%'
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
