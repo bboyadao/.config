@@ -507,7 +507,7 @@ endfunc
 
 map <F12> :Files<CR>
 " nnoremap <F100> :Files<cr>
-" map <space>f :Files<CR>
+map <space>f :Files<CR>
 map <space>F :Rg<CR>
 map <space>b :Buffers<CR>
 map <space>t :terminal<CR>
