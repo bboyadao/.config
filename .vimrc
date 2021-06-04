@@ -20,11 +20,6 @@ Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 " Multiple Plug commands can be written in a single line using | separators
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-" On-demand loading
-" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-" Nerdtree"
-" Plug 'preservim/nerdtree'
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'preservim/nerdcommenter'
 Plug 'wagnerf42/vim-clippy'
 Plug 'stsewd/fzf-checkout.vim'
@@ -35,10 +30,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'antoinemadec/coc-fzf'
 
-Plug 'lambdalisue/fern.vim'
-Plug 'LumaKernel/fern-mapping-fzf.vim'
-Plug 'lambdalisue/fern-git-status.vim'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+" Plug 'lambdalisue/fern.vim'
+" Plug 'LumaKernel/fern-mapping-fzf.vim'
+" Plug 'lambdalisue/fern-git-status.vim'
+" Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+
 " Color Schema
 Plug 'morhetz/gruvbox'
 
@@ -50,16 +46,12 @@ Plug 'itchyny/lightline.vim'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Comment
 Plug 'tpope/vim-commentary'
 
 " Surround
 Plug 'tpope/vim-surround'
-
-" Multiple Cursors
-Plug 'terryma/vim-multiple-cursors'
 
 " Python
 Plug 'psf/black', { 'branch': 'stable' }
@@ -90,10 +82,9 @@ Plug '~/my-prototype-plugin'
 " Initialize plugin system
 call plug#end()
 let g:mapleader=","
-" set termguicolors
+set termguicolors
 set nobackup
 set noswapfile
-
 set cursorline!
 set lazyredraw
 set synmaxcol=128
@@ -115,7 +106,7 @@ au BufNewFile,BufRead *.py
 let python_highlight_all=1
 
 
-au BufNewFile,BufRead *.js, *.html, *.css
+au BufNewFile,BufRead *.js, *.html, *.css, *.ts, *.tsx
     \ set tabstop=2  |
     \ set softtabstop=2 |
     \ set shiftwidth=2
@@ -174,17 +165,14 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ }
 
 " autocmd VimEnter * NERDTree
-" autocmd VimEnter * wincmd p
+" autocmd VimEnter * CocCommand explorer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" NERD Tree mappings
-" map <leader>nn :NERDTreeToggle<cr>
-" map <leader>nb :NERDTreeFromBookmark
-" map <leader>nf :NERDTreeFind<cr>
-" let NERDTreeShowHidden=1
+
 noremap <space>w <C-w>
 
-let g:gitgutter_sign_modified = '✹'
+" let g:gitgutter_sign_modified = '✹'
+let g:gitgutter_sign_modified = '●'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '-'
 let g:gitgutter_sign_modified_removed = '-'
@@ -193,7 +181,8 @@ let g:airline_powerline_fonts = 1
 set guifont=Hack\ Nerds\ Font:h13
 set background=dark
 syntax on
-autocmd vimenter * ++nested colorscheme gruvbox
+autocmd vimenter * ++nested 
+colorscheme gruvbox
 let g:gruvbox_italic=1
 
 let g:indentLine_enabled = 1
@@ -206,25 +195,7 @@ autocmd FileType python setlocal completeopt-=preview
 autocmd InsertEnter,InsertLeave * set cul!
 autocmd ColorScheme * hi pythonComment ctermfg=2 gui=italic guifg=#408010
 
-set updatetime=100
-
-" let g:multi_cursor_use_default_mapping=0
-
-" Default mapping
-" let g:multi_cursor_start_word_key      = '<C-n>'
-" let g:multi_cursor_select_all_word_key = '<A-n>'
-" let g:multi_cursor_start_key           = 'g<C-n>'
-" let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
-
-" Quickly find and open a file in the CWD
-
-" Quickly find and open a recently opened file
-
-" Quickly find and open a buffer
+set updatetime=500
 
 "COC
 
@@ -405,7 +376,8 @@ augroup END
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
-let g:ale_sign_error = '●'
+" let g:ale_sign_error = '●'
+let g:ale_sign_error = '!'
 let g:ale_sign_warning = '.'
 let g:ale_completion_enabled = 1
 let g:ale_completion_autoimport = 1
@@ -417,6 +389,8 @@ let g:ale_list_window_size = 30
 let g:ale_popup_menu_enabled = 1
 let g:ale_set_highlights = 1
 let g:ale_set_loclist = 0
+let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
+
 highlight! ALEWarning ctermbg=DarkMagenta
 nmap <silent> <C-E> <Plug>(ale_previous_wrap)
 nmap <silent> <C-e> <Plug>(ale_next_wrap)
@@ -464,14 +438,6 @@ let g:ale_completion_symbols = {
 
 map <C-LeftMouse> <leader>g
 
-" if executable('pyls')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'pyls',
-"         \ 'cmd': {server_info->['pyls']},
-"         \ 'whitelist': ['python'],
-"         \ })
-" endif
-set statusline+=%=
 set statusline+=\ %{LinterStatus()}
 
 nmap <F9> <Plug>(ale_fix)
@@ -482,28 +448,6 @@ function! GitStatus()
   return printf('+%d ~%d -%d', a, m, r)
 endfunction
 set statusline+=%{GitStatus()}
-
-if !has('gui_running')
-  map "in Insert mode, type Ctrl+v Alt+n here" <A-n>
-endif
-augroup MultipleCursorsSelectionFix
-    autocmd User MultipleCursorsPre  if &selection ==# 'exclusive' | let g:multi_cursor_save_selection = &selection | set selection=inclusive | endif
-    autocmd User MultipleCursorsPost if exists('g:multi_cursor_save_selection') | let &selection = g:multi_cursor_save_selection | unlet g:multi_cursor_save_selection | endif
-augroup END
-
-func! Multiple_cursors_before()
-  if deoplete#is_enabled()
-    call deoplete#disable()
-    let g:deoplete_is_enable_before_multi_cursors = 1
-  else
-    let g:deoplete_is_enable_before_multi_cursors = 0
-  endif
-endfunc
-func! Multiple_cursors_after()
-  if g:deoplete_is_enable_before_multi_cursors
-    call deoplete#enable()
-  endif
-endfunc
 
 map <space>f :BLines<CR>
 map <space>p :Files<CR>

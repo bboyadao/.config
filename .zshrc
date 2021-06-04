@@ -107,6 +107,8 @@ export ARCHFLAGS="-arch x86_64"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias a="/Applications/Alacritty.app/Contents/MacOS/alacritty"
 alias v=vim
+alias startmongo brew services start mongodb/brew/mongodb-community
+alias stopmongo brew services stop mongodb/brew/mongodb-community
 # This speeds up pasting w/ autosuggest
 # https://github.com/zsh-users/zsh-autosuggestions/issues/238
 pasteinit() {

@@ -496,6 +496,8 @@ key_bindings:
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
   # (macOS only)
+  - { key: D,     mods: Command,       chars: "\x06\x76" } 
+  - { key: D,     mods: Command|Shift, chars: "\x06\x73" }
   - { key: Key0,   mods: Command,         action: ResetFontSize    }
   - { key: Equals, mods: Command,         action: IncreaseFontSize }
   - { key: Minus,  mods: Command,         action: DecreaseFontSize }
