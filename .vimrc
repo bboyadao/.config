@@ -81,7 +81,7 @@ Plug '~/my-prototype-plugin'
 
 " Initialize plugin system
 call plug#end()
-let g:mapleader=","
+let g:mapleader=" "
 set termguicolors
 set nobackup
 set noswapfile
@@ -453,7 +453,7 @@ map <space>f :BLines<CR>
 map <space>p :Files<CR>
 map <space>F :Rg<CR>
 map <space>b :Buffers<CR>
-map <space>t :terminal<CR>
+map <space>T :terminal<CR>
 
 
 let g:coc_fzf_preview= 'right:50%'
@@ -477,3 +477,16 @@ augroup END
 let g:fern#renderer = "nerdfont"
 
 nnoremap <space>e :CocCommand explorer<CR>
+
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
+noremap <leader>t :tab new<cr>
