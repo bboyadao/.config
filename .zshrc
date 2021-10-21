@@ -105,6 +105,7 @@ export ARCHFLAGS="-arch x86_64"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias sk2='open -na /Applications/Skype.app --args --secondary --datapath="/Users/$(whoami)/Library/Application\ Support/Skype2'
 alias a="/Applications/Alacritty.app/Contents/MacOS/alacritty"
 alias v=vim
 alias startmongo brew services start mongodb/brew/mongodb-community
@@ -122,8 +123,11 @@ pastefinish() {
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
-alias dc=docker-compose
+alias dc='docker compose -f local-compose.yml'
 alias d=docker
+alias di='docker images'
+alias dpsa='docker ps -a'
+
 
 # export PATH="/usr/local/opt/node@10/bin:$PATH"
 export PATH="/usr/local/opt/node@15/bin:$PATH"

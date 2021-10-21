@@ -19,8 +19,6 @@ Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
 " Multiple Plug commands can be written in a single line using | separators
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
-Plug 'preservim/nerdcommenter'
 Plug 'wagnerf42/vim-clippy'
 Plug 'stsewd/fzf-checkout.vim'
 
@@ -29,11 +27,6 @@ Plug 'junegunn/fzf', {'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'antoinemadec/coc-fzf'
-
-" Plug 'lambdalisue/fern.vim'
-" Plug 'LumaKernel/fern-mapping-fzf.vim'
-" Plug 'lambdalisue/fern-git-status.vim'
-" Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 
 " Color Schema
 Plug 'morhetz/gruvbox'
@@ -45,7 +38,6 @@ Plug 'itchyny/lightline.vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
 
 " Comment
 Plug 'tpope/vim-commentary'
@@ -65,7 +57,6 @@ Plug 'nvie/vim-flake8'
 Plug 'integralist/vim-mypy'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
-" Plug 'ryanolsonx/vim-lsp-python'
 
 " Expand
 Plug 'terryma/vim-expand-region'
@@ -81,8 +72,11 @@ Plug '~/my-prototype-plugin'
 
 " Initialize plugin system
 call plug#end()
+set encoding=utf-8
+set number
+set relativenumber
 let g:mapleader=" "
-set termguicolors
+" set termguicolors
 set nobackup
 set noswapfile
 set cursorline!
@@ -98,7 +92,7 @@ au BufNewFile,BufRead *.py
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
-    \ set textwidth=80 |
+    \ set textwidth=120 |
     \ set expandtab |
     \ set autoindent |
     \ set fileformat=unix
@@ -120,7 +114,7 @@ set expandtab
 noremap <Tab> >gV
 noremap <S-Tab> <gV
 
-
+" Copy, Mouse
 set clipboard=unnamed
 set mouse=a
 vmap <D-c> "+y
@@ -131,58 +125,25 @@ set backspace=indent,eol,start
 set hlsearch!
 nnoremap <F3> :set hlsearch!<CR>
 
-hi! Normal ctermbg=NONE guibg=NONE
-hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
-
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
-
-set encoding=utf-8
-set number
-set relativenumber
-
-function! s:init_fern() abort
-  " Use 'select' instead of 'edit' for default 'open' action
-  nmap <buffer> <Plug>(fern-action-open) <Plug>(fern-action-open:select)
-endfunction
-
-augroup fern-custom
-  autocmd! *
-  autocmd FileType fern call s:init_fern()
-augroup END
-
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
-
-" autocmd VimEnter * NERDTree
-" autocmd VimEnter * CocCommand explorer
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 
 noremap <space>w <C-w>
 
-" let g:gitgutter_sign_modified = '✹'
-let g:gitgutter_sign_modified = '●'
-let g:gitgutter_sign_removed = '-'
-let g:gitgutter_sign_removed_first_line = '-'
-let g:gitgutter_sign_modified_removed = '-'
 let g:airline_powerline_fonts = 1
 
 set guifont=Hack\ Nerds\ Font:h13
 set background=dark
 syntax on
-autocmd vimenter * ++nested 
+" autocmd vimenter * ++nested
+
+" Theme transparent
 colorscheme gruvbox
+highlight Normal     ctermbg=NONE guibg=NONE
+highlight LineNr     ctermbg=NONE guibg=NONE
+highlight SignColumn ctermbg=NONE guibg=NONE
+
 let g:gruvbox_italic=1
 
 let g:indentLine_enabled = 1
@@ -193,7 +154,7 @@ set completeopt=menu,menuone,preview,noselect,noinsert
 
 autocmd FileType python setlocal completeopt-=preview
 autocmd InsertEnter,InsertLeave * set cul!
-autocmd ColorScheme * hi pythonComment ctermfg=2 gui=italic guifg=#408010
+" autocmd ColorScheme * hi pythonComment ctermfg=2 gui=italic guifg=#408010
 
 set updatetime=500
 
@@ -442,13 +403,6 @@ set statusline+=\ %{LinterStatus()}
 
 nmap <F9> <Plug>(ale_fix)
 
-
-function! GitStatus()
-  let [a,m,r] = GitGutterGetHunkSummary()
-  return printf('+%d ~%d -%d', a, m, r)
-endfunction
-set statusline+=%{GitStatus()}
-
 map <space>f :BLines<CR>
 map <space>p :Files<CR>
 map <space>F :Rg<CR>
@@ -469,13 +423,6 @@ command! -bang -nargs=? -complete=dir Files
 " nnoremap <space> za
 " vnoremap <space> zf
 
-augroup my-glyph-palette
-  autocmd! *
-  autocmd FileType fern call glyph_palette#apply()
-  autocmd FileType nerdtree,startify call glyph_palette#apply()
-augroup END
-let g:fern#renderer = "nerdfont"
-
 nnoremap <space>e :CocCommand explorer<CR>
 
 " Go to tab by number
@@ -490,3 +437,81 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 noremap <leader>t :tab new<cr>
+
+let g:coc_explorer_global_presets = {
+\   '.vim': {
+\     'root-uri': '~/.vim',
+\   },
+\   'cocConfig': {
+\      'root-uri': '~/.config/coc',
+\   },
+\   'tab': {
+\     'position': 'tab',
+\     'quit-on-open': v:true,
+\   },
+\   'tab:$': {
+\     'position': 'tab:$',
+\     'quit-on-open': v:true,
+\   },
+\   'floating': {
+\     'position': 'floating',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingTop': {
+\     'position': 'floating',
+\     'floating-position': 'center-top',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingLeftside': {
+\     'position': 'floating',
+\     'floating-position': 'left-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingRightside': {
+\     'position': 'floating',
+\     'floating-position': 'right-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'simplify': {
+\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+\   },
+\   'buffer': {
+\     'sources': [{'name': 'buffer', 'expand': v:true}]
+\   },
+\ }
+
+" Use preset argument to open it
+nnoremap <space>ed :CocCommand explorer --preset .vim<CR>
+nnoremap <space>ef :CocCommand explorer --preset floating<CR>
+nnoremap <space>ec :CocCommand explorer --preset cocConfig<CR>
+nnoremap <space>eb :CocCommand explorer --preset buffer<CR>
+
+" List all presets
+nnoremap <space>el :CocList explPresets
+
+" lightline
+let g:lightline = {
+  \ 'active': {
+  \   'left': [
+  \     [ 'mode', 'paste' ],
+  \     [ 'ctrlpmark', 'git', 'diagnostic', 'cocstatus', 'filename', 'method' ]
+  \   ],
+  \   'right':[
+  \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
+  \     [ 'blame' ]
+  \   ],
+  \ },
+  \ 'component_function': {
+  \   'blame': 'LightlineGitBlame',
+  \ }
+\ }
+
+function! LightlineGitBlame() abort
+  let blame = get(b:, 'coc_git_blame', '')
+  " return blame
+  return winwidth(0) > 120 ? blame : ''
+endfunction
+
+
